@@ -78,7 +78,7 @@ body：
 or use curl：
 
 ```bash
-curl -H "Content-Type:application/json" -X POST -d '{"userId":"1","commodityCode":"C201901140001","name":"风扇","count":2,"amount":"100"}' localhost:8081/buy
+curl localhost:8081/buy\?userId=U100001\&commodityCode=C201901140001\&orderCount=2
 ``` 
 
 then this will send a pay request,and return code is 200

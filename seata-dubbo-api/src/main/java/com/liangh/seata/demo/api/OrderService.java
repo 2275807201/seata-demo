@@ -17,8 +17,6 @@
 package com.liangh.seata.demo.api;
 
 
-import com.liangh.seata.demo.api.model.Order;
-
 /**
  * The interface Order service.
  */
@@ -31,5 +29,5 @@ public interface OrderService {
      * @param orderCount    订购数量
      * @return 生成的订单 order
      */
-    Order create(String userId, String commodityCode, int orderCount);
+    void create(String userId, String commodityCode, int orderCount);
 }

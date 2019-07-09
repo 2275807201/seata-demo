@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class BusinessController {
-
-
-
     @Autowired
     private BusinessService businessService;
 
@@ -27,8 +24,9 @@ public class BusinessController {
      * @Return:
      */
     @RequestMapping("/buy")
-    public String handleBusiness(){
-        businessService.purchase("U100001","",100);
+    public String handleBusiness(String userId,String commodityCode,int orderCount){
+        businessService.purchase(userId,commodityCode,orderCount);
         return "ok";
     }
+
 }

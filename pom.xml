@@ -20,17 +20,14 @@
 		<module>seata-dubbo-api</module>
 		<module>seata-dubbo-account</module>
 		<module>seata-dubbo-order</module>
-<!--		<module>seata-dubbo-storage</module>-->
+		<module>seata-dubbo-storage</module>
 		<module>seata-dubbo-business</module>
 
 	</modules>
 
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+
 
 		<dependency>
 			<groupId>mysql</groupId>

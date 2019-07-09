@@ -1,4 +1,4 @@
-package com.liangh.seata.demo.dubbo.account.config;
+package com.liangh.seata.demo.dubbo.order.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.zaxxer.hikari.HikariDataSource;
