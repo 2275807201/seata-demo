@@ -14,13 +14,14 @@
  *  limitations under the License.
  */
 
-package com.liangh.seata.demo.dubbo.order.service;
+package com.liangh.seata.demo.dubbo.storage.service;
 
-import com.liangh.seata.demo.api.AccountService;
-import com.liangh.seata.demo.api.OrderService;
+import com.liangh.seata.demo.api.StorageService;
+import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.annotation.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -30,38 +31,21 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *     -Djava.net.preferIPv4Stack=true
  * </pre>
  */
-@Service
 @Slf4j
-public class OrderServiceImpl implements OrderService {
+@Service
+public class StorageServiceImpl implements StorageService {
 
-
-    @Reference
-    private AccountService accountService;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+
     @Override
-    public void create(String userId, String commodityCode, int orderCount) {
+    public void deduct(String commodityCode, int count) {
 
-        // 计算订单金额
-        int orderMoney = calculate(commodityCode, orderCount);
-
-        // 从账户余额扣款
-        accountService.debit(userId, orderMoney);
-
-        // 创建新的订单
-        String sql = "insert into order_tbl (user_id, commodity_code, count, money) values (?, ?, ?, ?)";
-        jdbcTemplate.update(sql,userId,commodityCode,orderCount,orderMoney);
-
-        log.info("创建新的订单done");
-
-    }
-
-
-
-    private int calculate(String commodityId, int orderCount) {
-        return 1 * orderCount;
+        jdbcTemplate.update("update storage_tbl set count = count - ? where commodity_code = ?",
+            new Object[] {count, commodityCode});
+        log.info("更新库存成功");
     }
 
 }

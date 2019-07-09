@@ -10,10 +10,10 @@ spring:
 
 dubbo:
   scan:
-    base-packages: com.liangh.seata.demo.dubbo.order.service
+    base-packages: com.liangh.seata.demo.dubbo.storage.service
   protocol:
     name: dubbo
-    port: 20861
+    port: 20862
   registry:
     address: zookeeper://localhost:2181
 
